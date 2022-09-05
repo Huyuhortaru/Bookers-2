@@ -1,2 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>User info</h2>
+
+<%= image_tag @user.get_profile_image(100,100) %>
+
+  <h6>name</h6>
+  <%= current_user.name %>
+
+  <h6>introduction</h6>
+  <%= @user.introduction %>
+
+
+
+<div class="row">
+  <%= link_to user_edit_path(current_user),class: "btn btn-out-line-secondary btn-block.edit_user" do %>
+  <i class="fas fa-user-cog"></i>
+  <% end %>
+</div>
