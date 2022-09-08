@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   root to:'homes#top'
 
   get "/home/about" => "homes#about"
-  get "/user/edit" => "users#edit"
-  get "/book/edit" => "books#edit"
 
   resources :users
   resources :books

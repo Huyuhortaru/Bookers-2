@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    user.save
-    redirect_to '/index'
   end
 
   private
