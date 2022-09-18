@@ -61,10 +61,10 @@ Things you may want to cover:
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     
     
-    <% if @user.image.attached? %>
-  <%= image_tag user.image,size:"200x200" %>
-<% else %>
-  <%= image_tag 'no_image',size:"200x200" %>
-<% end %>
-
-<%= f.file_field :image, accept: "image/*" %>
+ destroy(@book.id)
+ 
+ def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to "/users"
+  end

@@ -23,19 +23,14 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to "/users/#{current_user.id}"
     else
-      flash[:notice] = " errors prohibited this obj from being saved:"
+      flash[:notice] = "errors prohibited this obj from being saved:"
       render :edit
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to "/users"
+    end
   end
 
   private
   def user_params
-    params.require(:user).permit(:title,:introduction,:profile_image)
+    params.require(:user).permit(:name,:introduction,:profile_image)
   end
 
   # def ensure_current_user
@@ -44,7 +39,5 @@ class UsersController < ApplicationController
     # if @user.id != current_user.id
       # redirect_to user_path(current_user.id)
   # end
-
-end
 
 end
