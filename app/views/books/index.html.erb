@@ -1,11 +1,11 @@
 
-<% if @book.errors %>
+<% if @book.errors.any? %>
     <ul>
-  <% @book.errors.full_messages.each do |message| %>
+  <%= @book.errors.count %>errors prohibited this book from being saved:
     <li><%= message %></li>
     <% end %>
     </ul>
-    <% end %>
+<% end %>
 
 
 <div class="container px-5 px-sm-0">
@@ -78,7 +78,7 @@
         <th><%= book.body %></th>
       </tr>
       <% end %>
-
+      
     </table>
     </div>
 

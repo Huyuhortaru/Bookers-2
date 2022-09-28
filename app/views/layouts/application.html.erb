@@ -13,22 +13,22 @@
   </head>
 
   <body>
-    
+
     <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/">
         <span>Bookers</span>
       </a>
-      
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          
+
           <% if user_signed_in? %>
           <li class="nav-link text-light">
             <%= link_to users_path(current_user.id),class:"nav-link text-light" do %>
@@ -87,8 +87,9 @@
         </div>
       </nav>
     </header>
-    
+
     <main>
+
       <%= flash[:notice] %>
         <div class="container">
           <div class="row">
@@ -97,9 +98,9 @@
         </div>
 
     </main>
-      
+
   <%= yield %>
-   
+
   <footer>
     <div class="container mt-5">
       <div class="row">
@@ -109,7 +110,7 @@
       </div>
     </div>
   </footer>
-    
+
   </body>
 
 </html>

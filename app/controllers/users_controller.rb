@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+    #(ログインしていない状態で他のページに遷移しようとした場合、ログインページに推移する)
+  before_action :ensure_current_user, {only: [:edit,:update,:destroy]}
+     #(ログインユーザー以外の情報を遷移しようとした時に制限をかける)
 
   def index
     @users =User.all
