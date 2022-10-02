@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
     #(ログインしていない状態で他のページに遷移しようとした場合、ログインページに推移する)
-  before_action :ensure_current_user, {only: [:edit,:update,:destroy]}
-     #(ログインユーザー以外の情報を遷移しようとした時に制限をかける)
+  # before_action :correct_user, only: [:edit, :update, :destroy]
+    #(ログインユーザー以外の情報を遷移しようとした時に制限をかける)
 
   def index
     @users =User.all
@@ -18,6 +18,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+
+    if @user.id == current_user.id
+      render "edit"
+    else
+      redirect_to users_path(current_user.id)
+    end
   end
 
   def update
@@ -27,7 +33,6 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to "/users/#{current_user.id}"
     else
-      flash[:notice] = "errors prohibited this obj from being saved:"
       render :edit
     end
   end
@@ -37,11 +42,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:introduction,:profile_image)
   end
 
-  # def ensure_current_user
+  # def correct_user
       # @user = User.find(params[:id])
 
     # if @user.id != current_user.id
-      # redirect_to user_path(current_user.id)
+      # redirect_to user_path(current_user.id) unless @user == current_user
+    # end
   # end
 
 end
