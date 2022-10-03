@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
     #(ログインしていない状態で他のページに遷移しようとした場合、ログインページに推移する)
-  # before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
+    #(controller内で共通の処理をメソッド化する)
+  before_action :correct_user, only: [:edit, :update]
     #(ログインユーザー以外の情報を遷移しようとした時に制限をかける)
 
   def index
@@ -12,23 +14,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @book = @user.books
   end
 
   def edit
-    @user = User.find(params[:id])
-
-    if @user.id == current_user.id
-      render "edit"
-    else
-      redirect_to users_path(current_user.id)
-    end
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       flash[:notice] = "You have updated user successfully."
       redirect_to "/users/#{current_user.id}"
@@ -41,13 +33,25 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:introduction,:profile_image)
   end
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
 
+  def correct_user
+    if @user != current_user
+       redirect_to user_path(current_user) 
+    end
+  end
+  
   # def correct_user
-      # @user = User.find(params[:id])
-
-    # if @user.id != current_user.id
-      # redirect_to user_path(current_user.id) unless @user == current_user
-    # end
+      # redirect_to user_path(current_user) if current_user != @user
   # end
-
+  
+  # def correct_user
+  # if current_user != @user
+  #   redirect_to user_path(current_user)
+  # # end
+  # end
+  # (別の記述方法)
 end
