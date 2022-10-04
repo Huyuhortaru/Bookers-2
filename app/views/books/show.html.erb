@@ -15,8 +15,6 @@
 
   <h2>User info</h2>
 
-     <%= image_tag @user.get_profile_image(100,100) %>
-
     <%= render 'users/user', user: @user %>
 
 
@@ -24,11 +22,25 @@
 
     <%= form_with model: @book_new do |f|  %>
     
-      <%= render 'books/book', book: @book %>
+      <div class="form-group">
+        <h6>Title</h6>
+          <%= f.text_field :title, class:"form-control" %>
+      </div>
+
+      <div class="form-group">
+        <h6>Opinion</h6>
+          <%= f.text_area :body, class:"form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%=f.submit'Create Book',class: "btn btn-sm btn-success" %>
+      </div>
+      
+    </div>
       
     <% end %>
     
-  </div>
+  
 
 
 

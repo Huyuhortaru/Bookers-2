@@ -28,8 +28,10 @@
       </div>
 
       <div class="form-group">
-        <%=f.submit'Update book',class: "btn btn-sm btn-success" %>
+        <%= f.submit'Update book',class: "btn btn-sm btn-success" %>
+        <!--<button class="btn btn-sm btn-success" type="submit">Update book</button>-->
       </div>
+      
       <% end %>
 
     <%= link_to "Show", book_path(@book.id) %>
