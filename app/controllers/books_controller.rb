@@ -33,7 +33,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = @book.user
     @book_new = Book.new
   end
 

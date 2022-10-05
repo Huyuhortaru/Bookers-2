@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-    #(ログインしていない状態で他のページに遷移しようとした場合、ログインページに推移する)
+  
   before_action :set_user, only: [:show, :edit, :update]
     #(controller内で共通の処理をメソッド化する)
   before_action :correct_user, only: [:edit, :update]

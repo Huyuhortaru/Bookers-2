@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!,except: [:top, :about]
+    #(ログインしていない状態で他のページに遷移しようとした場合、ログインページに推移する)
   before_action :configure_permitted_parameters,if: :devise_controller?
 
   def after_sign_in_path_for(resource)
